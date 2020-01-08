@@ -1,0 +1,16 @@
+ls
+cd
+git init
+git remote add origin "https://github.com/NavManish/BarcodeTest.git"
+$ git pull origin master
+git remote -v
+git add .
+git commit -m "Program for Barcode Generation"
+git push origin master
+
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+http://www.thomasterkelsen.co.uk/

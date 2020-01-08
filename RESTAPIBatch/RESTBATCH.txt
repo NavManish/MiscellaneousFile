@@ -1,0 +1,105 @@
+Create API Page and Publish it as REST API with deleteallowed,modifyallowed set to true
+
+
+POST URL --> 
+https://api.businesscentral.dynamics.com/v2.0/ad0f6938-6cb9-43fb-80bc-f5c6feecd8a2/Test/ODataV4/$batch
+THE WHOLE GAME IS ABOUT $batch variable here and the surprising fact is that this variable is used only once
+---------------------------------------------------------------------------------------------------------
+
+PostMan Header Values -->
+Content-Type : multipart/mixed;boundary=batch_ec2461be-c322-b0c3-d945-ea852ccf9bf4
+Accept : application/json
+and set Authorization
+
+
+Postman Body Raw Text Data
+
+--batch_ec2461be-c322-b0c3-d945-ea852ccf9bf4
+Content-Type: multipart/mixed; boundary=changeset_04f0810b-7b0c-33c5-a210-02a6add6d029
+
+--changeset_04f0810b-7b0c-33c5-a210-02a6add6d029
+Content-Type: application/http
+Content-Transfer-Encoding:binary
+Content-ID: 1
+
+POST https://api.businesscentral.dynamics.com/v2.0/ad0f6938-6cb9-43fb-80bc-f5c6feecd8a2/Test/ODataV4/Company('Test%20Rah3')/CustomerInvoiceentry HTTP/1.1
+Content-Type: application/json;type=entry
+
+{
+    "Journal_Template_Name": "CASH RECE",
+    "Journal_Batch_Name": "PMTGATEWAY",
+    "Line_No": 10000,
+    "Posting_Date": "2019-06-17",
+    "Document_Date": "2019-06-17",
+    "Document_Type": "Payment",
+    "Document_No":"CPP0000000005",
+    "External_Document_No": "PAY-PS-INV103215",
+    "Account_Type": "Customer",
+    "Account_No": "CPRGL101BT1",
+    "Description": "PAY-SIP03750",
+    "Currency_Code": "",
+    "Amount": -969.43,
+    "Amount_LCY": -969.43,
+    "Applies_to_Doc_Type": "Invoice",
+    "Applies_to_Doc_No": "SIP03750"
+ }
+
+--changeset_04f0810b-7b0c-33c5-a210-02a6add6d029--
+
+--batch_ec2461be-c322-b0c3-d945-ea852ccf9bf4
+Content-Type: multipart/mixed; boundary=changeset_04f0810b-7b0c-33c5-a210-02a6add6d123
+
+--changeset_04f0810b-7b0c-33c5-a210-02a6add6d123
+Content-Type: application/http
+Content-Transfer-Encoding:binary
+Content-ID: 2
+
+POST https://api.businesscentral.dynamics.com/v2.0/ad0f6938-6cb9-43fb-80bc-f5c6feecd8a2/Test/ODataV4/Company('Test%20Rah3')/CustomerInvoiceentry HTTP/1.1
+Content-Type: application/json;type=entry
+
+{
+    "Journal_Template_Name": "CASH RECE",
+    "Journal_Batch_Name": "PMTGATEWAY",
+    "Line_No": 30000,
+    "Posting_Date": "2019-06-17",
+    "Document_Date": "2019-06-17",
+    "Document_Type": "Payment",
+    "Document_No":"CPP0000000006",
+    "External_Document_No": "PAY-PS-INV103215",
+    "Account_Type": "Customer",
+    "Account_No": "CPRGL101BT1",
+    "Description": "PAY-SIP03750",
+    "Currency_Code": "",
+    "Amount": -500,
+    "Amount_LCY": -500,
+    "Applies_to_Doc_Type": "Invoice"
+ }
+
+--changeset_04f0810b-7b0c-33c5-a210-02a6add6d123--
+
+--batch_ec2461be-c322-b0c3-d945-ea852ccf9bf4
+Content-Type: multipart/mixed; boundary=changeset_77162fcd-b8da-41ac-a9f8-9357efbbd621
+
+--changeset_77162fcd-b8da-41ac-a9f8-9357efbbd621
+Content-Type: application/http 
+Content-Transfer-Encoding:binary 
+
+PATCH https://api.businesscentral.dynamics.com/v2.0/ad0f6938-6cb9-43fb-80bc-f5c6feecd8a2/Test/ODataV4/Company('Test%20Rah3')/CustomerInvoiceentry/?$filter=Line_No+eq+20000 HTTP/1.1
+If-Match: W/"JzQ0O1R1ZVgwSVlOai84c0pXNTVoWFFQdGFWVWJOQ3FVUDVXMitzQjl4UkIyRWc9MTswMDsn"
+Content-ID: 3
+Content-Type: application/json 
+
+{
+    "Description" : "Testing API"
+}
+
+--changeset_77162fcd-b8da-41ac-a9f8-9357efbbd621--
+--batch_ec2461be-c322-b0c3-d945-ea852ccf9bf4
+Content-Type: application/http
+Content-Transfer-Encoding:binary
+
+GET https://api.businesscentral.dynamics.com/v2.0/ad0f6938-6cb9-43fb-80bc-f5c6feecd8a2/Test/ODataV4/Company('Test%20Rah3')/CustomerInvoiceentry/?$filter=Line_No+eq+20000 HTTP/1.1
+Content-Type: application/json; charset=utf-8
+Accept: application/json
+
+--batch_ec2461be-c322-b0c3-d945-ea852ccf9bf4--
